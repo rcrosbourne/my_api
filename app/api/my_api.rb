@@ -4,9 +4,15 @@ class MyAPI < Grape::API
 		User.all
 	end
 	resources :users do
+		params do 
+			requires :name, type: String, desc: "Name"
+			requires :email, type: String, desc: "Email"
+			requires :password, type: String, desc: "Password"
+			requires :password_confirmation, type: String, desc: "Password Confirmation"
+		end
 		post '/create' do
-			user = User.create(name: "Test", email: "test@email.com", password: "1234",
-				password_confirmation: "1234")
+			parameters = ActionController::Parameters.new(params)
+			user = User.create(parameters.permit(:name, :email, :password, :password_confirmation))
 			if user
 				user
 			else

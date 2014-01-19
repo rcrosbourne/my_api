@@ -33,7 +33,8 @@ group :doc do
 end
 
 gem 'warden' #Authentication
-gem 'grape'
+gem 'grape'  #api
+gem 'doorkeeper' #Authorizaton server 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
